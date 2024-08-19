@@ -2,19 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Models\Agama;
 use App\Models\Siswa;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\DataTables;
 
 class DataSiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+
+            $data = Siswa::query();
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $detailRoute = route('data-siswa.show', $row->id); // Route Detail
+                    $editRoute = route('data-siswa.edit', $row->id);   // Route Edit
+                    $deleteRoute = route('data-siswa.destroy', $row->id); // Route Delete
+    
+                    return Helper::actionButtons($detailRoute, $editRoute, $deleteRoute);
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
         return view('data-siswa.index');
     }
 
@@ -88,7 +106,13 @@ class DataSiswaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            $siswa = Siswa::findOrFail($id);
+            $siswa->tanggal_lahir = \Carbon\Carbon::parse($siswa->tanggal_lahir)->format('d-m-Y');
+            return view('data-siswa.detail', compact('siswa'));
+        } catch (\Exception $e) {
+            return redirect()->route('data-siswa.index')->withErrors(['error' => 'Data tidak ditemukan: ' . $e->getMessage()]);
+        }
     }
 
     /**
@@ -96,7 +120,9 @@ class DataSiswaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $agamaOptions = Agama::pluck('agama', 'id');
+        $data_siswa = Siswa::findOrFail($id);
+        return view('data-siswa.form', compact('agamaOptions', 'data_siswa'));
     }
 
     /**
@@ -174,6 +200,18 @@ class DataSiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $siswa = Siswa::findOrFail($id);
+
+            if ($siswa->foto) {
+                Storage::disk('public')->delete($siswa->foto);
+            }
+
+            $siswa->delete();
+
+            return redirect()->route('data-siswa.index')->with('success', 'Data siswa berhasil dihapus.');
+        } catch (\Exception $e) {
+            return redirect()->route('data-siswa.index')->withErrors(['error' => 'Terjadi kesalahan saat menghapus data: ' . $e->getMessage()]);
+        }
     }
 }

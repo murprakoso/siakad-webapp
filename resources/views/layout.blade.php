@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>Siakad</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('dist/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -24,7 +24,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('dist/css/sb-admin-2.css') }}" rel="stylesheet">
-
+    @stack('css')
 </head>
 
 <body id="page-top">
@@ -322,7 +322,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('dist/js/sb-admin-2.min.js') }}"></script>
-
+    @stack('js')
 </body>
 
 </html>

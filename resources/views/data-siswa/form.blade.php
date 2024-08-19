@@ -17,7 +17,7 @@
             @include('partials._flash')
 
             {{-- {{ html()->form($formMethod, $formAction)->class('form')->open() }} --}}
-            {{ html()->form($formMethod, $formAction)->class('form')->attribute('enctype', 'multipart/form-data')->open() }}
+            {{ html()->form($formMethod, $formAction)->class('form')->attribute('enctype', 'multipart/form-data')->attribute('autocomplete', 'off')->open() }}
             <div class="row">
                 <!-- Kolom Kiri -->
                 <div class="col-md-6">
