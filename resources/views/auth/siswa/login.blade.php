@@ -21,12 +21,12 @@
                                 </div>
                                 <form class="user">
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                            aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                        <input type="text" class="form-control form-control-user" id="nim"
+                                            aria-describedby="nim" placeholder="Masukan NIM..." name="nim">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                            id="password" placeholder="Password" name="password">
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
