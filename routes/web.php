@@ -10,6 +10,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('data-siswa', \App\Http\Controllers\DataSiswaController::class);
+    Route::resource('data-guru', \App\Http\Controllers\DataGuruController::class);
 });
 
 /** Auth */

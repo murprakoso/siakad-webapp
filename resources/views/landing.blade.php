@@ -28,10 +28,8 @@
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
+                {{-- <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Beranda</a></li>
-                    {{-- <li class="nav-item"><a class="nav-link" href="#!">Log In</a></li> --}}
-                    {{-- Tambahkan menu dengan dropdown dengan bootstrap v5 --}}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,13 +38,47 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ url('siswa/login') }}">Siswa</a></li>
                             <li><a class="dropdown-item" href="{{ url('guru/login') }}">Guru</a></li>
-                            {{-- <li>
-                                <hr class="dropdown-divider">
-                            </li> --}}
                             <li><a class="dropdown-item" href="{{ url('operator/login') }}">Operator</a></li>
                         </ul>
                     </li>
+                </ul> --}}
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Beranda</a></li>
+
+                    @guest
+                        <!-- Jika user belum login, tampilkan opsi login -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Login
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ url('siswa/login') }}">Siswa</a></li>
+                                <li><a class="dropdown-item" href="{{ url('guru/login') }}">Guru</a></li>
+                                <li><a class="dropdown-item" href="{{ url('operator/login') }}">Operator</a></li>
+                            </ul>
+                        </li>
+                    @else
+                        <!-- Jika user sudah login, tampilkan nama user dan opsi logout -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->nama_lengkap }} <!-- Menampilkan nama user yang sedang login -->
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
+                                <li><a class="dropdown-item" href="#">Profil</a></li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endguest
                 </ul>
+
             </div>
         </div>
     </nav>

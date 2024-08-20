@@ -49,7 +49,7 @@
          <div id="collapseGuru" class="collapse" aria-labelledby="headingGuru" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">Manajemen Guru:</h6>
-                 <a class="collapse-item" href="data-guru.html">Data Guru</a>
+                 <a class="collapse-item" href="{{ route('data-guru.index') }}">Data Guru</a>
                  <a class="collapse-item" href="mata-pelajaran.html">Mata Pelajaran</a>
              </div>
          </div>

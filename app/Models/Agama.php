@@ -20,4 +20,10 @@ class Agama extends Model
     {
         return $this->hasMany(Siswa::class, 'id_agama');
     }
+
+    // Relasi ke tabel tb_guru
+    public function gurues()
+    {
+        return $this->hasMany(Guru::class, 'id_agama');
+    }
 }
