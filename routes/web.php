@@ -12,6 +12,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('data-siswa', \App\Http\Controllers\DataSiswaController::class);
     Route::resource('data-guru', \App\Http\Controllers\DataGuruController::class);
     Route::resource('data-mapel', \App\Http\Controllers\MapelController::class);
+    Route::resource('daftar-kelas', \App\Http\Controllers\KelasController::class);
 });
 
 /** Auth */

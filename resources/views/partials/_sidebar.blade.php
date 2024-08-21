@@ -64,7 +64,7 @@
          <div id="collapseKelas" class="collapse" aria-labelledby="headingKelas" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">Manajemen Kelas:</h6>
-                 <a class="collapse-item" href="daftar-kelas.html">Daftar Kelas</a>
+                 <a class="collapse-item" href="{{ route('daftar-kelas.index') }}">Daftar Kelas</a>
                  <a class="collapse-item" href="wali-kelas.html">Wali Kelas</a>
              </div>
          </div>

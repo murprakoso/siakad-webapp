@@ -46,4 +46,14 @@ class Guru extends Model
     {
         return $this->hasMany(Mapel::class, 'id_guru');
     }
+
+    /**
+     * Mendefinisikan relasi antara Guru dan Kelas (wali kelas).
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function kelas()
+    {
+        return $this->hasMany(Kelas::class, 'wali_kelas_id');
+    }
 }

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             AgamaSeeder::class,
             GuruSeeder::class,
             MapelSeeder::class,
+            KelasSeeder::class,
         ]);
     }
 }
