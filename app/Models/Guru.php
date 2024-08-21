@@ -37,4 +37,13 @@ class Guru extends Model
     {
         return $this->belongsTo(Agama::class, 'id_agama');
     }
+
+    /**
+     * Relasi ke model Mapel (One-to-Many).
+     * Seorang guru dapat memiliki banyak mata pelajaran (Mapel).
+     */
+    public function mapel()
+    {
+        return $this->hasMany(Mapel::class, 'id_guru');
+    }
 }

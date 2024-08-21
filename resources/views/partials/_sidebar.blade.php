@@ -80,7 +80,7 @@
              data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">Mata Pelajaran:</h6>
-                 <a class="collapse-item" href="daftar-mata-pelajaran.html">Daftar Mata Pelajaran</a>
+                 <a class="collapse-item" href="{{ route('data-mapel.index') }}">Daftar Mata Pelajaran</a>
                  <a class="collapse-item" href="penugasan-guru.html">Penugasan Guru</a>
              </div>
          </div>
