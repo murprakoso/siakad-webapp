@@ -96,7 +96,7 @@
              data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">Keuangan:</h6>
-                 <a class="collapse-item" href="data-keuangan-siswa.html">Data Keuangan Siswa</a>
+                 <a class="collapse-item" href="{{ route('data-keuangan-siswa.index') }}">Data Keuangan Siswa</a>
                  <a class="collapse-item" href="pembayaran-spp.html">Pembayaran SPP</a>
              </div>
          </div>

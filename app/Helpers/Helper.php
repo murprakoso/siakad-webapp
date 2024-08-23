@@ -24,4 +24,16 @@ class Helper
         $btn .= '</div>';
         return $btn;
     }
+
+    /**
+     * Format angka ke format mata uang.
+     *
+     * @param  float  $number
+     * @param  int    $decimals
+     * @return string
+     */
+    public static function formatCurrency($number, $decimals = 2)
+    {
+        return 'Rp ' . number_format($number, $decimals, ',', '.');
+    }
 }

@@ -34,4 +34,10 @@ class Siswa extends Model
     {
         return $this->belongsTo(Agama::class, 'id_agama');
     }
+
+    // Relasi ke model Keuangan
+    public function keuangan()
+    {
+        return $this->hasMany(Keuangan::class, 'id_siswa');
+    }
 }
