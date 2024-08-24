@@ -9,7 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Siakad</title>
+    <title>{{ $settings->site_name ?? 'SIAKAD' }}</title>
+
+    <!-- Favicon -->
+    @if (isset($settings->site_favicon) && $settings->site_favicon)
+        <link rel="icon" href="{{ asset($settings->site_favicon_url) }}" type="image/x-icon">
+    @else
+        <link rel="icon" href="{{ asset('default_favicon.ico') }}" type="image/x-icon"> <!-- Default favicon -->
+    @endif
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('dist/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">

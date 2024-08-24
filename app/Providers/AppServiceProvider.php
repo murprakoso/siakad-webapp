@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use App\Models\Setting; // Pastikan model Setting diimport
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Menggunakan View Composer untuk menyebarkan data settings ke semua view
+        View::composer('*', function ($view) {
+            $settings = Setting::first(); // Ambil data pengaturan
+            $view->with('settings', $settings); // Kirim data ke semua view
+        });
     }
 }

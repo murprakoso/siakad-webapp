@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,6 +15,14 @@ Route::middleware('auth')->group(function () {
     Route::resource('data-mapel', \App\Http\Controllers\MapelController::class);
     Route::resource('daftar-kelas', \App\Http\Controllers\KelasController::class);
     Route::resource('data-keuangan-siswa', \App\Http\Controllers\KeuanganController::class);
+
+    // Setting
+    // Route::resource('settings', \App\Http\Controllers\SettingController::class);
+    // Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+    // Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::get('/settings/edit', [SettingController::class, 'edit'])->name('settings.edit');
+    Route::put('/settings/update', [SettingController::class, 'update'])->name('settings.update');
 });
 
 /** Auth */
