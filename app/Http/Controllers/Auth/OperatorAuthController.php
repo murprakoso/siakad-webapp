@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,36 +17,27 @@ class OperatorAuthController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-        $validator = Validator::make($request->all(), [
-            // $request->validate([
-            'username' => 'required|string|max:255',
-            'password' => 'required',
+        $credentials = $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $user = User::where('username', $request->username)->first();
-
-        if (!$user) {
-            // Jika username tidak ditemukan
-            return back()->withErrors([
-                'username' => 'Username tidak ditemukan.',
-            ])->withInput();
-        }
-
-        if (auth()->attempt($request->only('username', 'password'))) {
+        if (Auth::guard('operator')->attempt(['username' => $credentials['username'], 'password' => $credentials['password']])) {
             $request->session()->regenerate();
-
             return redirect()->intended('/dashboard');
         }
 
         return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
+            'username' => 'Username atau password salah.',
         ]);
+    }
+
+    public function destroy(Request $request)
+    {
+        Auth::guard('operator')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('operator.login');
     }
 }

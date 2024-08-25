@@ -2,10 +2,16 @@
 
 namespace App\Models;
 
+// use Illuminate\Auth\Authenticatable;
+// use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Guru extends Model
+// class Guru extends Model implements AuthenticatableContract
+class Guru extends Authenticatable
+    // class Guru extends Model
 {
     use HasFactory;
 
@@ -31,6 +37,18 @@ class Guru extends Model
     protected $hidden = [
         'password',
     ];
+
+    // Hash password before saving to database
+    // public static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::creating(function ($guru) {
+    //         if ($guru->password) {
+    //             $guru->password = Hash::make($guru->password);
+    //         }
+    //     });
+    // }
 
     // Relasi ke tabel tb_agama
     public function agama()

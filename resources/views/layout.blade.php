@@ -1,3 +1,17 @@
+@php
+    // Menentukan guard yang aktif
+    $guard = 'web'; // Guard default jika tidak ada guard yang terdeteksi
+    if (Auth::guard('siswa')->check()) {
+        $guard = 'siswa';
+    } elseif (Auth::guard('guru')->check()) {
+        $guard = 'guru';
+    } elseif (Auth::guard('operator')->check()) {
+        $guard = 'operator';
+    }
+
+    // Mengambil pengguna berdasarkan guard yang aktif
+    $user = Auth::guard($guard)->user();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -160,7 +174,7 @@
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="dist/img/undraw_profile.svg">
                             </a> --}}
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            {{-- <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     {{ Auth::user()->nama_lengkap ?? 'Nama Pengguna' }}
@@ -168,6 +182,15 @@
                                 <img class="img-profile rounded-circle"
                                     src="{{ Auth::user()->foto ? asset('storage/' . Auth::user()->foto) : asset('dist/img/undraw_profile.svg') }}"
                                     alt="User Profile Image" style="object-fit: cover;object-position: center;">
+                            </a> --}}
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    {{ $user->nama_lengkap ?? 'Nama Pengguna' }}
+                                </span>
+                                <img class="img-profile rounded-circle"
+                                    src="{{ $user->foto ? asset('storage/' . $user->foto) : asset('dist/img/undraw_profile.svg') }}"
+                                    alt="User Profile Image" style="object-fit: cover; object-position: center;">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -176,12 +199,14 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="{{ route('settings.index') }}">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
+                                @auth('operator')
+                                    <a class="dropdown-item" href="{{ route('settings.index') }}">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Pengaturan
+                                    </a>
+                                @endauth
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0);"
+                                {{-- <a class="dropdown-item" href="javascript:void(0);"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
@@ -190,6 +215,18 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                     @method('DELETE')
+                                </form> --}}
+                                <!-- Tombol Logout -->
+                                <a class="dropdown-item" href="javascript:void(0);"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+
+                                <!-- Form Logout -->
+                                <form id="logout-form" action="{{ route($guard . '.logout') }}" method="POST"
+                                    class="d-none">
+                                    @csrf
                                 </form>
                             </div>
                         </li>
@@ -232,7 +269,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    {{-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -249,7 +286,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('dist/vendor/jquery/jquery.min.js') }}"></script>

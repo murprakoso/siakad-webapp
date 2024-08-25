@@ -21,7 +21,7 @@
                                 </div>
                                 @include('partials._flash')
                                 <!-- Login Form -->
-                                {!! html()->form('POST', route('operator.login.post'))->class('user')->open() !!}
+                                {!! html()->form('POST', route('guru.login.post'))->class('user')->open() !!}
                                 <div class="form-group">
                                     {!! html()->text('username')->class('form-control form-control-user')->id('username')->placeholder('Masukkan Username...')->required() !!}
                                 </div>
