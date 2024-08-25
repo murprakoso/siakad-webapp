@@ -41,4 +41,10 @@ class Siswa extends Authenticatable
     {
         return $this->hasMany(Keuangan::class, 'id_siswa');
     }
+
+    // Relationship with PendaftaranSiswaBaru
+    public function siswaBaru()
+    {
+        return $this->hasOne(PendaftaranSiswa::class, 'id_siswa');
+    }
 }
