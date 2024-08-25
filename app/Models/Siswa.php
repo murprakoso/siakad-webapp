@@ -47,4 +47,9 @@ class Siswa extends Authenticatable
     {
         return $this->hasOne(PendaftaranSiswa::class, 'id_siswa');
     }
+
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class, 'id_siswa');
+    }
 }

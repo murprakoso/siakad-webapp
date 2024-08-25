@@ -26,6 +26,7 @@ Route::middleware('auth:operator')->group(function () {
     Route::resource('daftar-kelas', \App\Http\Controllers\KelasController::class);
     Route::resource('data-keuangan-siswa', \App\Http\Controllers\KeuanganController::class);
     Route::resource('pendaftaran-siswa', \App\Http\Controllers\PendaftaranSiswaController::class);
+    Route::resource('absensi-siswa', \App\Http\Controllers\AbsensiController::class);
 
     // Setting
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
