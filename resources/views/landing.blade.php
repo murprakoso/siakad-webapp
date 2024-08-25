@@ -17,10 +17,9 @@
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
-        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('landing/css/styles.css') }}" rel="stylesheet" />
 </head>
@@ -76,8 +75,8 @@
     <header class="masthead text-center text-white">
         <div class="masthead-content">
             <div class="container px-5">
-                <h1 class="masthead-heading mb-0">Selamat Datang di SIAKAD</h1>
-                <h2 class="masthead-subheading mb-0">Sistem Informasi Akademik Sekolah</h2>
+                <h2 class="masthead-heading mb-0">Selamat Datang di SIAKAD</h2>
+                <h3 class="masthead-subheading mb-0">Sistem Informasi Akademik Sekolah</h3>
                 <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#tentang">Pelajari Lebih Lanjut</a>
             </div>
         </div>
@@ -149,7 +148,7 @@
     <!-- Footer-->
     <footer class="py-5 bg-black">
         <div class="container px-5">
-            <p class="m-0 text-center text-white small">&copy; SIAKAD 2024. Semua Hak Dilindungi.</p>
+            <p class="m-0 text-center text-white small">&copy; SIAKAD 2024. </p>
         </div>
     </footer>
 

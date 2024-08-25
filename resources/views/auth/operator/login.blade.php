@@ -18,6 +18,9 @@
                             <div class="p-5">
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
+                                    <div class="text-center mb-2">
+                                        <span class="small">Silahkan login menggunakan akun Operator</span>
+                                    </div>
                                 </div>
                                 @include('partials._flash')
                                 <!-- Login Form -->
