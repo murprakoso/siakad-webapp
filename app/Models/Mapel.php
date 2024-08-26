@@ -26,4 +26,10 @@ class Mapel extends Model
     {
         return $this->belongsTo(Guru::class, 'id_guru');
     }
+
+    // Relasi satu-ke-banyak ke NilaiSiswa
+    public function nilaiSiswa()
+    {
+        return $this->hasMany(NilaiSiswa::class, 'id_mapel');
+    }
 }

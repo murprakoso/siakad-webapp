@@ -79,7 +79,7 @@
                     <a class="collapse-item" href="{{ route('data-siswa.index') }}">Data Siswa</a>
                     <a class="collapse-item" href="{{ route('pendaftaran-siswa.index') }}">Pendaftaran Siswa Baru</a>
                     <a class="collapse-item" href="{{ route('absensi-siswa.index') }}">Absensi Siswa</a>
-                    <a class="collapse-item" href="nilai-siswa.html">Nilai Siswa</a>
+                    <a class="collapse-item" href="{{ route('nilai-siswa.index') }}">Nilai Siswa</a>
                     {{-- <a class="collapse-item" href="kelulusan-siswa.html">Kelulusan Siswa</a> --}}
                 </div>
             </div>
