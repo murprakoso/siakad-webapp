@@ -20,6 +20,7 @@ class MultiGuardMiddleware
             return $next($request);
         }
 
-        return redirect()->route('/');
+        // return redirect()->route('/');
+        return redirect('/');
     }
 }

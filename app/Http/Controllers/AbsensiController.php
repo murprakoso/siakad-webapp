@@ -78,12 +78,12 @@ class AbsensiController extends Controller
      */
     public function show(string $id)
     {
-        try {
-            $absensi = Absensi::with('siswa')->findOrFail($id);
-            return view('data-absensi.detail', compact('absensi'));
-        } catch (\Exception $e) {
-            return redirect()->route('data-absensi.index')->withErrors(['error' => 'Data tidak ditemukan: ' . $e->getMessage()]);
-        }
+        // try {
+        $absensi = Absensi::with('siswa')->findOrFail($id);
+        return view('data-absensi.detail', compact('absensi'));
+        // } catch (\Exception $e) {
+        //     return redirect()->route('absensi-siswa.index')->withErrors(['error' => 'Data tidak ditemukan: ' . $e->getMessage()]);
+        // }
     }
 
     /**
